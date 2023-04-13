@@ -1,0 +1,17 @@
+version: '3'
+services:
+  go-template: # サービス名
+    container_name: go-template
+    build: # ビルドに使うDockerファイルのパス
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - 8080:8080
+    volumes: # マウントディレクトリ
+      - ./:/app
+    tty: true # コンテナの永続化
+    env_file:
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
+
